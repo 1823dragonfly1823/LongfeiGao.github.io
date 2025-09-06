@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Longfei Gao, Ph.D.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #f7f9fc;
+      color: #333;
+    }
+    header {
+      background: white;
+      padding: 10px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 20px; letter-spacing: 1px; }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+    }
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+      flex-wrap: wrap;
+    }
+    .sidebar {
+      flex: 1;
+      min-width: 280px;
+      max-width: 300px;
+      background: white;
+      padding: 30px;
+      margin-right: 40px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .sidebar img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    .sidebar h2 { margin: 10px 0 5px; }
+    .sidebar p { margin: 5px 0; color: #555; }
+    .icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .icons a {
+      text-decoration: none;
+      color: #2980b9;
+      font-size: 24px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .icons img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    .info-section {
+      text-align: left;
+      margin-top: 20px;
+    }
+    .info-section h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    .info-section ul {
+      padding-left: 20px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .main {
+      flex: 2;
+      min-width: 300px;
+      background: white;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .main h2 { font-size: 24px; margin-top: 0; }
+    section {
+      scroll-margin-top: 80px;
+      margin-bottom: 40px;
+    }
+    ul { padding-left: 20px; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column; }
+      .sidebar { margin-right: 0; margin-bottom: 30px; }
+    }
+    
+     .map-container {
+        width: 100%;
+	height: 600px;
+        max-width: 1000px;   /* or whatever fits your layout */
+  	margin: 0 auto 40px; /* center and add bottom spacing */
+   	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  	border-radius: 8px;
+  	overflow: hidden;
+       }
+
+      .map-container iframe {
+  	display: block;
+  	width: 100%;
+  	height: 100%;
+      }
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>LONGFEI GAO, Ph.D.</h1>
+    <nav>
+      <a href="#biography">Home</a>
+      <a href="#publications">Publications</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+      <a href="#opening">Opening</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <img src="profile.jpg" alt="Longfei Gao">
+      <h2>Longfei Gao, Ph.D.</h2>
+      <p>Research Scientist</p>
+      <p></p>
+      <p>Center for Developmental and Regenerative Biology</p>
+      <p>Cedars-Sinai Guerin Children's</p>
+      <p>Board of Governors Regenerative Medicine Institute</p>
+      <p>Cedars-Sinai Medical Center</p>
+	<div class="icons">
+        <a href="mailto:longfei.gao@cshs.org" title="Email"><img src="Email.png" alt="Email"></a>
+       <a href="https://github.com/longfeigao" target="_blank" title="GitHub"><img src="github.png" alt="GitHub"></a>
+        <a href="https://scholar.google.com/citations?user=3FQRZocAAAAJ" target="_blank" title="Google Scholar"><img src="scholar.png" alt="Google Scholar"></a>
+      <a href="https://www.linkedin.com/in/longfeigao" target="_blank" title="LinkedIn"><img src="LinkedIn.png" alt="LinkedIn"></a>
+      <a href="https://x.com/GaoLongfei88875" target="_blank" title="X"><img src="X.png" alt="X"></a>
+      </div>
+      <div class="info-section">
+        <h3>Research Interests</h3>
+        <ul>
+          <li>Stem Cell Biology</li>
+          <li>Hematopoietic Stem Cells</li>
+          <li>Hematopoiesis</li>
+	  <li>HSC Niche</li>
+          <li>RNA Binding Protein</li>
+          <li>Chemical Biology</li>
+        </ul>
+        <h3>Education and Training</h3>
+        <ul>
+	  <li><b>Postdoc</b>, Columbia Stem Cell Initiative, Department of Microbiology and Immunology, Department of Rehabilitation and Regenrative Medicine, Columbia University Irving Medical Center, 2025</li>
+         <br> 
+	 <li><b>Ph.D.</b> in Cell Biology, Center for Excellence in Molecular Cell Science, Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences, 2019</li>
+         <br> 
+	 <li><b>B.S.</b> in Biotechnology, School of Life Sciences and Technology, Tongji University, China, 2013</li>
+        </ul>
+	</div>
+    </aside>
+
+    <main class="main">
+      <section id="biography">
+        <h2>Biography</h2>
+      <p>I am a Research Scientist leading an independent laboratory in the Center for Developmental and Regenerative Biology at Cedars-Sinai Guerin Children’s and the Board of Governors Regenerative Medicine Institute. Our lab investigates the biology of hematopoietic stem cells (HSCs) and their niches under normal and diseased conditions, with a particular focus on how the microenvironment within and beyond the bone marrow shapes HSC behavior. We use a wide range of approaches, including mouse genetics, lineage tracing, flow cytometry, single-cell sequencing, and bioinformatic tools. Our goal is to accelerate and transform HSC-based therapies for diverse diseases.</p>
+	<p> </p>
+	<p>We welcome motivated students and researchers at all levels—technicians, undergraduates, graduate students, and postdocs—to join our cutting-edge research. <b><i>YOUR success is OUR success!</i></b></p>
+		
+	</section>
+      <section id="publications">
+        <h2>Publications</h2>
+        <ol>
+	<h3>Postdoc</h3>
+          <li><b>Gao L</b><sup>*</sup>, Lee H<sup>*</sup>, Goodman J, and Ding L. Hematopoietic stem cell niche generation and maintenance are distinguishable by an epitranscriptomic program. <b><i>Cell</i></b>, 2024.</li>
+          <li>Hirakawa H, <b>Gao L</b>, Tavakol N, Vunjak-Novakovic G, and Ding L. Cellular plasticity of the bone marrow niche promotes hematopoietic stem cell regeneration. <b><i>Nature Genetics</i></b>, 2023.</li>
+	  <li><b>Gao L</b><sup>*</sup>, Decker M<sup>*</sup>, Chen H, and Ding L. Thrombopoietin from hepatocytes promotes HSC regeneration after myeloablation. <b><i>eLife</i></b>, 2021.</li>
+         <h3>Ph.D.</h3>
+	  <li><b>Gao L</b>, Zhang Z, Lu J, and Pei G. Mitochondria transfer between human neural cells and Alexander disease-associated GFAP mutations impair the astrocytic transfer. <b><i>Front Cell Neurosci</i></b>, 2019.</li>
+          <li><b>Gao L</b><sup>*</sup>, Huang S<sup>*</sup>, Hua W, Xin S, Cheng L, Guan W, Yu Y, Mao Y, and Pei G. Suppression of glioblastoma by a drug cocktail reprogramming tumor cells into neuronal like cells. <b><i>Scientific Reports</i></b>, 2019.</li>
+          <li><b>Gao L</b>, Guan W, Wang M, Wang H, Yu J, Liu Q, Qiu B, Yu Y, Ping Y, Bian X, Shen L, and Pei G. Direct generation of human neuronal cells from adult astrocytes by small molecules. <b><i>Stem Cell Reports</i></b>, 2017.</li>
+	  <li>Cheng L<sup>*</sup>, <b>Gao L</b><sup>*</sup>, Guan W, Mao J, Hu W, Qiu B, Zhao J, Yu Y, and Pei G. Direct conversion of astrocytes into neuronal cells by drug cocktail. <b><i>Cell Research</i></b>, 2015.</li>
+	<li>Hu W, Qiu B, Wang Q, Wang M, Li W, <b>Gao L</b>, Shen L, Huang Y, Xie G, Zhao H, Jin Y, Tang B, Yu Y, Zhao J, and Pei G. Direct conversion of normal and Alzheimer's disease human fibroblasts into neuronal cells by small molecules. <b><i>Cell Stem Cell</i></b>, 2015.</li>
+	 <h3>Undergraduate</h3>
+          <li>Guo X, Liu Q, Wang Q, Zhu S, <b>Gao L</b>, Hong W, Chen Y, Wu M, Liu H, and Kang J. microRNA-29b is a novel mediator of Sox2 function in the regulation of somatic cell reprogramming. <b><i>Cell Research</i></b>, 2013.</li>
+	<li>Wang G, Guo X, Hong W, Liu Q, Wei T, Lu C, <b>Gao L</b>, Ye D, Zhou Y, Chen J, Wang J, Wu M, Liu H, and Kang J. Critical regulation of miR-200/ZEB2 pathway in Oct4/Sox2-induced mesenchymal-to-epithelial transition and induced pluripotent stem cell generation. <b><i>Proceedings of the National Academy Sciences</i></b>, 2013.</li>
+        </ol>
+      </section>
+      <section id="awards">
+        <h2>Awards and Honors</h2>
+        <ol>
+          <li>NIH/NHLBI K99/R00 Pathway to Independence Award, 2025–2029</li>
+          <li>American Heart Association Postdoctoral Fellowship, 2022–2023</li>
+          <li>NYSTEM Training Grant, 2021</li>
+          <li>TAM Paper of the Year Award, Columbia University Herbert Irving Comprehensive Cancer Center, 2025</li>
+	  <li>Shanghai Outstanding Graduate, Shanghai Municipal Education Commission, 2019</li>
+          <li>National Scholarship, The Ministry of Education of China, 2017, 2011, 2010</li>
+	  <li>Outstanding Graduate of Tongji University, Tongji University, 2013</li>
+	  <li>Excellent Student of Tongji University, Tongji University, 2013, 2011</li>
+	  <li>National Encouragement Scholarship, The Ministry of Education of China, 2012</li>
+	</ol>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:longfei.gao@cshs.org">longfei.gao@@cshs.org</a><br>
+	Phone: <br>
+	Address: 8723 Alden Dr., Steven Spielberg Building, Los Angeles, CA 90048
+	<div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.732187705803!2d-118.38486882353235!3d34.07558461650991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bead6c436f09%3A0x5bd8b192fb0e4aa6!2s8723%20Alden%20Dr%2C%20Los%20Angeles%2C%20CA%2090048!5e0!3m2!1sen!2sus!4v1693778888888"
+      width="100%"
+      height="100"
+      frameborder="0"
+      style="border:0;"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+	</p>
+      </section>
+
+	<section id="opening">
+        <h2>Opening</h2>
+        <p style="color:red;"><b>WE ARE HIRING</b><br>
+	We welcome motivated technicians, students, and postdocs to join our cutting-edge research to transform the treatments for diverse diseases. If interested, please send a copy of your CV and a statement to longfei.gao@@cshs.org.</p>
+	</section>
+
+    </main>
+  </div>
+</body>
+
+</html>
