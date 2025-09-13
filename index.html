@@ -15,15 +15,15 @@
       color: #333;
     }
     header {
-      background: white;
       padding: 10px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #ddd;
       position: sticky;
       top: 0;
       z-index: 1000;
+      left:350px;
+	max-width: 1100px;
     }
     header h1 { margin: 0; font-size: 20px; letter-spacing: 1px; }
     nav a {
@@ -33,7 +33,6 @@
       font-weight: 600;
     }
     .container {
-      display: flex;
       max-width: 1200px;
       margin: 20px auto;
       padding: 0 20px;
@@ -41,6 +40,8 @@
     }
     .sidebar {
       flex: 1;
+      top: 60px;
+      bottom: 40px;
       min-width: 280px;
       max-width: 300px;
       background: white;
@@ -48,6 +49,7 @@
       margin-right: 40px;
       text-align: center;
       box-shadow: 0 0 10px rgba(0,0,0,0.05);
+     position: fixed;
     }
     .sidebar img {
       width: 160px;
@@ -89,30 +91,47 @@
       margin-top: 0;
       margin-bottom: 20px;
     }
-    .main {
-      flex: 2;
-      min-width: 300px;
-      background: white;
-      padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-    }
-    .main h2 { font-size: 24px; margin-top: 0; }
+   /* header height ~80px; sidebar offset ~400px */
+   
+
+.main {
+  position: fixed;
+  top: 60px;            /* header clearance */
+  left: 750px;          /* sidebar width + gap */
+  right: 400px;         /* space from right edge */
+  bottom: 40px;         /* space from bottom edge */
+
+  background: #fff;
+  padding: 30px;
+  min-width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+
+  /* Scroll content but hide the bar */
+  overflow-y: auto;           /* or 'scroll' */
+  -ms-overflow-style: none;   /* IE/Edge (old) */
+  scrollbar-width: none;      /* Firefox */
+}
+.main::-webkit-scrollbar {
+  display: none;              /* Chrome/Safari/Edge (Chromium) */
+}
+
+.main h2 { font-size: 24px; margin-top: 0; }
     section {
-      scroll-margin-top: 80px;
-      margin-bottom: 10px;
-    }
- .main h3 { font-size: 24px; margin-top: 0; }
-    section {
-      scroll-margin-top: 80px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 0;
     }   
  ul { padding-left: 20px; }
-    @media (max-width: 768px) {
-      .container { flex-direction: column; }
-      .sidebar { margin-right: 0; margin-bottom: 30px; }
-    }
-    
-     .map-container {
+    @media (max-width: 900px) {
+  .sidebar {
+    position: static;
+    width: auto;
+    margin: 0 0 20px 0;
+    max-height: none;
+    overflow: visible;
+  }
+}    
+ 
+    .map-container {
         width: 100%;
 	height: 600px;
         max-width: 1000px;   /* or whatever fits your layout */
@@ -121,7 +140,6 @@
   	border-radius: 8px;
   	overflow: hidden;
        }
-
       .map-container iframe {
   	display: block;
   	width: 100%;
@@ -131,23 +149,41 @@
   </style>
 </head>
 
+<script>
+document.querySelectorAll('nav a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const id = a.getAttribute('href').slice(1);
+    const target = document.getElementById(id);
+    const container = document.querySelector('.main');
+    if (target && container) {
+      const top = target.offsetTop - 10; // adjust for .main padding/top gap
+      container.scrollTo({ top, behavior: 'smooth' });
+      history.replaceState(null, '', '#' + id); // keep URL updated
+    }
+  });
+});
+</script>
+
+
 <body>
   <header>
     <h1>LONGFEI GAO, Ph.D.</h1>
     <nav>
       <a href="#biography">Home</a>
+      <a href="#education">Education</a>
       <a href="#publications">Publications</a>
       <a href="#awards">Awards</a>
       <a href="#contact">Contact</a>
       
     </nav>
   </header>
-
+ 
   <div class="container">
     <aside class="sidebar">
       <img src="profile.jpg" alt="Longfei Gao">
       <h2>Longfei Gao, Ph.D.</h2>
-      <p>Research Scientist</p>
+      <p><b>Research Scientist</b></p>
       <p></p>
       <p>Center for Developmental and Regenerative Biology</p>
       <p>Cedars-Sinai Guerin Children's</p>
@@ -169,14 +205,7 @@
 	  <li>Immune Response</li>
 	  <li>Hematological and Neurological Disorders</li>
         </ul>
-        <h3>Education and Training</h3>
-        <ul>
-	  <li><b>Postdoc</b>, Columbia Stem Cell Initiative, Department of Microbiology and Immunology, Department of Rehabilitation and Regenrative Medicine, Columbia University Irving Medical Center, 2025</li>
-         <br> 
-	 <li><b>Ph.D.</b> in Cell Biology, Center for Excellence in Molecular Cell Science, Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences, 2019</li>
-         <br> 
-	 <li><b>B.S.</b> in Biotechnology, School of Life Sciences and Technology, Tongji University, China, 2013</li>
-        </ul>
+        <h3 style="color:red;font-size:36px;text-align:center;">WE ARE HIRING</h3>
 	</div>
     </aside>
 
@@ -185,12 +214,21 @@
       <h2>Biography</h2>
       <p>I am a Research Scientist leading an independent laboratory in the Center for Developmental and Regenerative Biology at Cedars-Sinai Guerin Children’s and the Board of Governors Regenerative Medicine Institute. Our lab investigates the biology of hematopoietic stem cells (HSCs) and their niches under normal and diseased conditions, with a particular focus on how the microenvironment within and beyond the bone marrow shapes HSC behavior. The main research directions we care currently pursuing are: (1) mechanisms of bone marrow HSC maintenance and self-renewal at the intrinsic, niche, and systematic levels; (2) function and regulation of HSCs in the skull and extramedullary tissues (such as the spleen and liver), with special interests from the niche side; (3) function and regulation of HSCs and their niches in immune responses, such as trained immunity formation and hematological disorder development. We employ a wide range of approaches, including mouse genetics, lineage tracing, flow cytometry, single-cell sequencing, and bioinformatic tools. Our research goal is to generate transformative insights that improve HSC-based therapies for diverse diseases. We committed to fostering a supportive and collaborative environment where every member can thrive. </p>       
         <p> </p>
-        <p><b style="color:red;font-size:24px;">WE ARE HIRING</b><br>
         We welcome motivated technicians, students, and postdocs to join our cutting-edge research and transform the treatments for diverse diseases. If interested, please send a copy of your CV and a statement to longfei.gao@@cshs.org.	
 	<b><i>YOUR success is OUR success!</i></b></p>	
 	</section>
-      <section id="publications">
-        <h2>Publications</h2>
+        
+	<section id="education">
+        <h2>Education and Training</h2>
+        <ul>
+        <li><b>Postdoc</b>, Columbia Stem Cell Initiative, Department of Microbiology and Immunology, Department of Rehabilitation and Regenrative Medicine, Columbia University Irving Medical Center, 2025</li>
+         <li><b>Ph.D.</b> in Cell Biology, Center for Excellence in Molecular Cell Science, Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences, 2019</li>
+         <li><b>B.S.</b> in Biotechnology, School of Life Sciences and Technology, Tongji University, China, 2013</li>
+	</ul>
+      </section>
+
+ <section id="publications">
+     <h2>Publications</h2>
         <ol>
 	<h3>Postdoc</h3>
           <li><b>Gao L</b><sup>*</sup>, Lee H<sup>*</sup>, Goodman J, and Ding L. Hematopoietic stem cell niche generation and maintenance are distinguishable by an epitranscriptomic program. <b><i>Cell</i></b>, 2024.</li>
