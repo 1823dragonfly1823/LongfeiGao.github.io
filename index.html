@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="author" content="Longfei Gao">
+  <meta name="description" content="Research Scientist">
+
+  <!-- Open Sans font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap + icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
+  <title>Longfei Gao, Ph.D.</title>
+
+  <style>
+    /* Global font + readable base */
+    html, body, h1, h2, h3, h4, h5, h6, p, li, a, span, div {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    html { font-size: 100%; line-height: 1.7; }
+    body, p, li, a, span, div { font-size: 20px; }
+    body { background: #fafbfe; color:#1c1f23; }
+
+    /* ================= NAVBAR (from c13.html) ================= */
+    #navbar-main { border-bottom:1px solid rgba(0,0,0,.06); background:#fff; }
+	#navbar-main .header-inner {display:flex; align-items:center; justify-content:space-between;}
+	#navbar-main .navbar-brand {white-space:nowrap; flex:0 0 auto; margin-left: 0; padding-left: 0;}
+	#navbar-main .nav-links    {flex:0 0 auto; gap:16px; white-space:nowrap;}
+
+    .header-inner { display:flex; align-items:center; justify-content:space-between; }
+    .navbar-brand{ white-space:nowrap; margin-left: 0px; }
+    .navbar-brand strong{ font-weight:800; font-size:24px; color:#000; }
+
+    .nav-links{ display:flex; gap:16px; white-space:nowrap; }
+    .nav-links li{ display:inline-block; }
+    .nav-links a{ padding:6px 10px; border-radius:8px; font-weight:600; }
+    .nav-links a:hover{ background:#f1f3f9; }
+
+    /* Hamburger (hidden until compact mode) */
+    .nav-toggle{ display:none; width:44px; height:36px; margin-left:12px; border:0; background:transparent; cursor:pointer; z-index:1300;}
+    .nav-toggle span{ display:block; height:2px; margin:6px 0; background:#111; }
+
+    /* Compact mode (added to <body> by JS when title+links don’t fit) */
+    body.nav-compact .nav-toggle{ display:inline-block; }
+    
+/* Compact mode: hide the link row by default */
+body.nav-compact #navbar-main .nav-links {
+  display:none !important;   /* force hide overrides Bootstrap */
+  position:absolute;
+  right:16px; top:100%;
+  background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.12);
+  border-radius:10px;
+  padding:10px 12px;
+  flex-direction:column;
+  gap:2px;
+  z-index:1200;
+}
+
+/* Only show links when toggle is active */
+body.nav-compact #navbar-main .nav-links.show {
+  display:flex !important;
+}
+
+	/* ========================================================= */
+
+    /* Profile card */
+    .profile-card{
+      background:#fff;border:1px solid #ddd;border-radius:10px;
+      padding:20px;text-align:center;box-shadow:0 0 10px rgba(0,0,0,.05);
+      margin-bottom:20px;
+    }
+    .portrait img{
+      width: 90%;
+      max-width: 150px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 50%;
+      display:block;
+      margin:0 auto;
+    }
+
+    /* Sticky sidebar on desktop; normal flow on mobile */
+    @media (min-width: 992px){
+      aside.col-md-4{
+        position: sticky;
+        top: 80px;
+        align-self: flex-start;
+        height: calc(100vh - 100px);
+        overflow: hidden;
+      }
+      .main-scroll{
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-right: 8px;
+      }
+      .main-scroll::-webkit-scrollbar{ width:0; height:0; }
+      .main-scroll{ scrollbar-width:none; }
+    }
+    @media (max-width: 991px){
+      aside.col-md-4, .main-scroll{
+        position: static; height:auto; max-height:none; overflow:visible;
+      }
+    }
+
+    /* Simple helpers */
+    .anchor-offset{position:relative;top:0px;visibility:hidden}
+    .note{padding:10px 12px;border:1px dashed #ddd;border-radius:10px;background:#fcfdff;text-align:center;}
+    section + section{margin-top:26px}
+  </style>
+
+  <!-- ============================================================ -->
+
+</head>
+
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<!-- ======================= NAVBAR ======================= -->
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container header-inner">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><strong>Longfei Gao, Ph.D.</strong></a>
+
+      <!-- Hamburger (hidden until needed) -->
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Give your links an id -->
+    <ul class="nav navbar-nav navbar-right nav-links" id="nav-links">
+      <li><a href="#about">Home</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+ <!-- ================= NAVBAR JS ================= -->
+  <script>
+  // Smooth scroll inside .main-scroll when clicking header links
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelectorAll('#navbar-main a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        const container = document.querySelector('.main-scroll');
+        if (target && container) {
+          const top = target.offsetTop;
+          container.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  });
+
+  // Auto-switch to hamburger when title + links don’t fit
+(function () {
+  const container = document.querySelector('#navbar-main .header-inner'); // row with brand + links
+  const brand     = document.querySelector('.navbar-brand');
+  const linksWrap = document.getElementById('nav-links');
+  const toggleBtn = document.querySelector('.nav-toggle');
+
+  if (!container || !brand || !linksWrap || !toggleBtn) return;
+
+(function () {
+  const container = document.querySelector('#navbar-main .header-inner');
+  const brand     = document.querySelector('.navbar-brand');
+  const linksWrap = document.getElementById('nav-links');
+  const toggleBtn = document.querySelector('.nav-toggle');
+  if (!container || !brand || !linksWrap || !toggleBtn) return;
+
+  // Measure links' natural width even if the real one is display:none
+  function measureLinksWidth() {
+    const clone = linksWrap.cloneNode(true);
+    clone.id = '';                           // avoid duplicate id
+    clone.classList.remove('show');          // closed by default
+    // off-screen but measurable
+    clone.style.position   = 'absolute';
+    clone.style.visibility = 'hidden';
+    clone.style.display    = 'inline-flex';
+    clone.style.whiteSpace = 'nowrap';
+    clone.style.left = '-9999px';
+    document.body.appendChild(clone);
+    const w = Math.ceil(clone.scrollWidth || clone.offsetWidth);
+    document.body.removeChild(clone);
+    return w;
+  }
+
+  function needCompact() {
+    const available = container.clientWidth;
+    const brandW    = Math.ceil(brand.getBoundingClientRect().width);
+    const linksW    = measureLinksWidth();   // <-- robust width
+    const buffer    = 48;                    // switch before clipping
+    return (brandW + linksW + buffer) > available;
+  }
+
+  function updateMode() {
+    if (needCompact()) {
+      document.body.classList.add('nav-compact');      // show hamburger
+    } else {
+      document.body.classList.remove('nav-compact');   // show inline links
+      linksWrap.classList.remove('show');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  // Toggle dropdown in compact mode
+  toggleBtn.addEventListener('click', () => {
+    const showing = linksWrap.classList.toggle('show');
+    toggleBtn.setAttribute('aria-expanded', showing ? 'true' : 'false');
+  });
+
+  // Run immediately and on changes
+  window.addEventListener('load',  updateMode);
+  window.addEventListener('resize', updateMode);
+  if (window.ResizeObserver) new ResizeObserver(updateMode).observe(container);
+  if (document.fonts?.ready) document.fonts.ready.then(updateMode);
+  updateMode(); // important: first pass right now
+})();
+
+})();
+
+
+</script>
+
+
+<!-- ======================= CONTENT ======================= -->
+<div class="container" style="margin-top:80px">
+  <div class="row">
+
+    <!-- ===== Sidebar (sticky) ===== -->
+    <aside class="col-xs-12 col-md-4">
+      <div class="profile-card">
+        <div class="portrait" style="margin:0 auto 18px;">
+          <img src="profile.jpg" alt="Profile photo">
+        </div>
+        <h2 style="margin:8px 0 0">Longfei Gao, Ph.D.</h2>
+        <p><b>Research Scientist</b></p>
+        <p>Center for Developmental &amp; Regenerative Biology, Cedars-Sinai Guerin Children’s</p>
+        <p>Board of Governors Regenerative Medicine Institute</p>
+        <p>Cedars-Sinai Medical Center</p>
+
+        <div class="icons" style="display:flex;justify-content:center;gap:12px;margin:10px 0 6px">
+          <a href="mailto:longfei.gao@cshs.org" title="Email"><img src="Email.png" alt="Email" style="width:28px;height:28px"></a>
+          <a href="https://scholar.google.com/citations?user=3FQRZocAAAAJ" target="_blank" title="Google Scholar"><img src="scholar.png" alt="Scholar" style="width:28px;height:28px"></a>
+        </div>
+
+        <div class="sideblock" style="text-align:left;margin-top:14px">
+          <h3>Research Interests</h3>
+          <ul>
+            <li>Hematopoietic Stem Cells</li>
+            <li>Hematopoietic Stem Cell Niche</li>
+            <li>Immune Response</li>
+            <li>Hematological &amp; Neurological Disorders</li>
+          </ul>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ===== Main (scrolls independently) ===== -->
+    <main class="col-xs-12 col-md-8 main-scroll">
+      <span id="about" class="anchor-offset"></span>
+      <section>
+        <h2>Biography</h2>
+        <p>
+        I am a Research Scientist leading an independent laboratory in the Center for Developmental &amp; Regenerative Biology, Cedars-Sinai Guerin Children’s and the Board of Governors Regenerative Medicine Institute at Cedars-Sinai Medical Center. Our lab investigates the biology of hematopoietic stem cells (HSCs) and their niches under normal and diseased conditions, with a particular focus on how the niche within and beyond the bone marrow shapes HSC behavior. The main research directions we care currently pursuing include: (1) mechanisms of bone marrow HSC maintenance and self-renewal at the intrinsic, niche, and systematic levels; (2) function and regulation of HSCs in the skull and extramedullary tissues (such as the spleen and liver), with special interests in the niche; (3) function and regulation of HSCs and their niches in immune responses, such as the formation of trained immunity and the development of hematological/neurological disorders. We employ a wide range of approaches, including mouse genetics, lineage tracing, flow cytometry, single-cell sequencing, and bioinformatic tools. Our research goal is to generate transformative insights that improve HSC-based therapies for diverse diseases. We committed to fostering a supportive and collaborative lab environment where every member can thrive.
+	</p>
+        <h3 style="text-align:center;color:#c00;font-size:32px;">WE ARE HIRING.</h3>
+        <p class="note">
+          We welcome motivated technicians, students, and postdocs. Email your CV and a brief statement to  <a href="mailto:longfei.gao@cshs.org">longfei.gao@cshs.org</a>. <i>Your success is our success!</i>
+        </p>
+      </section>
+
+      <span id="education" class="anchor-offset"></span>
+      <section>
+        <h2>Education &amp; Training</h2>
+        <ul>
+          <li><b>Postdoc</b>, Columbia Stem Cell Initiative; Dept. of Microbiology &amp; Immunology; Dept. of Rehabilitation &amp; Regenerative Medicine, Columbia University Irving Medical Center, 2025</li>
+          <li><b>Ph.D.</b>, Cell Biology, Center for Excellence in Molecular Cell Science, Shanghai Institute of Biochemistry &amp; Cell Biology, Chinese Academy of Sciences, 2019</li>
+          <li><b>B.S.</b>, Biotechnology, School of Life Sciences &amp; Technology, Tongji University, 2013</li>
+        </ul>
+      </section>
+
+      <span id="publications" class="anchor-offset"></span>
+      <section>
+        <h2>Publications</h2>
+         <ol>
+	<h3>Postdoc</h3>
+        <li><b>Gao L</b><sup>*</sup>, Lee H<sup>*</sup>, Goodman J, and Ding L. Hematopoietic stem cell niche generation and maintenance are distinguishable by an epitranscriptomic program. <b><i>Cell</i></b>, 2024.</li>
+        <li><b>Gao L</b>, Ding L. METTL3: Melting the tumor microenvironment for improved immunotherapy. <b><i>Cell Chemical Biology</i></b>, 2024.</li>
+          <li>Hirakawa H, <b>Gao L</b>, Tavakol N, Vunjak-Novakovic G, and Ding L. Cellular plasticity of the bone marrow niche promotes hematopoietic stem cell regeneration. <b><i>Nature Genetics</i></b>, 2023.</li>
+          <li><b>Gao L</b><sup>*</sup>, Decker M<sup>*</sup>, Chen H, and Ding L. Thrombopoietin from hepatocytes promotes HSC regeneration after myeloablation. <b><i>eLife</i></b>, 2021.</li>
+
+        <h3>Graduate</h3>
+        <li><b>Gao L</b>, Zhang Z, Lu J, and Pei G. Mitochondria transfer between human neural cells and Alexander disease-associated GFAP mutations impair the astrocytic transfer. <b><i>Front Cell Neurosci</i></b>, 2019.</li>
+          <li><b>Gao L</b><sup>*</sup>, Huang S<sup>*</sup>, Hua W, Xin S, Cheng L, Guan W, Yu Y, Mao Y, and Pei G. Suppression of glioblastoma by a drug cocktail reprogramming tumor cells into neuronal like cells. <b><i>Scientific Reports</i></b>, 2019.</li>
+          <li><b>Gao L</b>, Guan W, Wang M, Wang H, Yu J, Liu Q, Qiu B, Yu Y, Ping Y, Bian X, Shen L, and Pei G. Direct generation of human neuronal cells from adult astrocytes by small molecules. <b><i>Stem Cell Reports</i></b>, 2017.</li>
+          <li>Cheng L<sup>*</sup>, <b>Gao L</b><sup>*</sup>, Guan W, Mao J, Hu W, Qiu B, Zhao J, Yu Y, and Pei G. Direct conversion of astrocytes into neuronal cells by drug cocktail. <b><i>Cell Research</i></b>, 2015.</li>
+        <li>Li Y, Lu J, Cao X, Zhao H, <b>Gao L</b>, Xia P, Pei G. A newly synthesized rhamnoside derivative alleviates Alzheimer’s amyloid-β-induced oxidative stress, mitochondrial dysfunction, and cell senescence through upregulating SIRT3. <b><i>Oxidative Medicine and Cellular Longevity</i></b>, 2020.</li>
+        <li>Huang s, Cao X, Zhou Y, Shi F, Xin S, He S, An Y, <b>Gao L</b>, Yang Y, Yu B, Pei G. An analog derived from phenylpropanoids ameliorates Alzheimer's disease–like pathology and protects mitochondrial function. <b><i>Neurobiology of Aging</i></b>, 2019.</li>
+        <li>Hu W, Qiu B, Wang Q, Wang M, Li W, <b>Gao L</b>, Shen L, Huang Y, Xie G, Zhao H, Jin Y, Tang B, Yu Y, Zhao J, and Pei G. Direct conversion of normal and Alzheimer's disease human fibroblasts into neuronal cells by small molecules. <b><i>Cell Stem Cell</i></b>, 2015.</li>
+      
+	<h3>Undergraduate</h3>
+        <li>Guo X, Liu Q, Wang Q, Zhu S, <b>Gao L</b>, Hong W, Chen Y, Wu M, Liu H, and Kang J. microRNA-29b is a novel mediator of Sox2 function in the regulation of somatic cell reprogramming. <b><i>Cell Research</i></b>, 2013.</li>
+        <li>Wang G, Guo X, Hong W, Liu Q, Wei T, Lu C, <b>Gao L</b>, Ye D, Zhou Y, Chen J, Wang J, Wu M, Liu H, and Kang J. Critical regulation of miR-200/ZEB2 pathway in Oct4/Sox2-induced mesenchymal-to-epithelial transition and induced pluripotent stem cell generation. <b><i>Proceedings of the National Academy Sciences</i></b>, 2013.</li>
+        </ol>
+</section>
+
+      <span id="awards" class="anchor-offset"></span>
+      <section>
+        <h2>Awards &amp; Honors</h2>
+        <ul>
+        <li>NIH/NHLBI K99/R00 Pathway to Independence Award, 2025–2029</li>
+          <li>American Heart Association Postdoctoral Fellowship, 2022–2023</li>
+          <li>NYSTEM Training Grant, 2021</li>
+          <li>TAM Paper of the Year Award, Columbia University Herbert Irving Comprehensive Cancer Center, 2025</li>
+          <li>Shanghai Outstanding Graduate, Shanghai Municipal Education Commission, 2019</li>
+          <li>National Scholarship, The Ministry of Education of China, 2017, 2011, 2010</li>
+          <li>Outstanding Graduate of Tongji University, Tongji University, 2013</li>
+          <li>Excellent Student of Tongji University, Tongji University, 2013, 2011</li>
+          <li>National Encouragement Scholarship, The Ministry of Education of China, 2012</li>
+	</ul>
+      </section>
+
+      <span id="contact" class="anchor-offset"></span>
+      <section>
+        <h2>Contact</h2>
+        <p>
+          Email: <a href="mailto:longfei.gao@cshs.org">longfei.gao@cshs.org</a><br>
+          Address: 8723 Alden Dr., Steven Spielberg Building, Los Angeles, CA 90048
+        </p>
+
+        <!-- Google Map Embed -->
+        <div style="margin-top:14px;border:1px solid #ddd;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 0 10px rgba(0,0,0,.05);">
+          <iframe
+            src="https://www.google.com/maps?q=8723%20Alden%20Dr.,%20Steven%20Spielberg%20Building,%20Los%20Angeles,%20CA%2090048&output=embed"
+            width="100%" height="320" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- Footer container kept (empty line removed as requested) -->
+<footer class="site-footer" style="margin-top:30px">
+  <div class="container">
+    <!-- intentionally left without © line -->
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
